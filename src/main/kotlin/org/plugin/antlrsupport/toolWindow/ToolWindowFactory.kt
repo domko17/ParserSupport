@@ -12,6 +12,9 @@ class ToolWindowFactory : ToolWindowFactory, DumbAware {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val contentFactory = ContentFactory.getInstance()
 
+//        val mainToolWindow = contentFactory.createContent(GrammarLoader(project).getContent(), "ANTLR Grammar", false)
+//        toolWindow.contentManager.addContent(mainToolWindow)
+
         val parseTreeWindow = contentFactory.createContent(ASTPanel(), "Parse Tree", false)
         toolWindow.contentManager.addContent(parseTreeWindow)
 

@@ -34,4 +34,13 @@
                     factoryClass="org.plugin.antlrsupport.toolWindow.ToolWindowFactory"
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
     </extensions>
+    <actions>
+        <action id="com.example.plugin.GenerateParser" class="org.plugin.antlrsupport.GenerateParserAction" text="Generate ANTLR Parser">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <applicationListeners>
+        <listener class="org.plugin.antlrsupport.GrammarFileListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </applicationListeners>
 </idea-plugin>
