@@ -22,8 +22,8 @@ intellij {
 }
 
 dependencies {
-    implementation("org.antlr:antlr4-runtime:4.10.1")
-    implementation("org.antlr:antlr4:4.10.1")
+    implementation("org.antlr:antlr4-runtime:4.9.3")
+    implementation("org.antlr:antlr4:4.9.3")
 }
 
 tasks {
