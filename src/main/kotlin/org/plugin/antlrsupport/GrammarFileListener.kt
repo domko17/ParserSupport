@@ -11,11 +11,6 @@ class GrammarFileListener : FileEditorManagerListener, BulkFileListener  {
     override fun fileOpened(source: FileEditorManager, file: VirtualFile) {
         if (file.extension == "g4") {
             val parser = ParserGenerator.generateParser(file)
-            if (parser != null) {
-                println("Generated and cached parser for ${file.name}")
-            } else {
-                println("Failed to generate parser for ${file.name}")
-            }
         }
     }
 
@@ -23,9 +18,7 @@ class GrammarFileListener : FileEditorManagerListener, BulkFileListener  {
         for (event in events) {
             val file = event.file ?: continue
             if (file.extension == "g4") {
-                println("Grammar file modified/saved: ${file.name}")
-                val content = loadGrammarContent(file)
-                println("Grammar file ${file.name} saved. Content:\n$content")
+                val parser = ParserGenerator.generateParser(file)
             }
         }
     }
