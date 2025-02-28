@@ -33,13 +33,7 @@
                     anchor="bottom"
                     factoryClass="org.plugin.antlrsupport.toolWindow.ToolWindowFactory"
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
+
+        <projectService serviceImplementation="org.plugin.antlrsupport.GrammarFileListener"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="org.plugin.antlrsupport.GrammarFileListener"
-                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
-
-        <listener class="org.plugin.antlrsupport.GrammarFileListener"
-                  topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
-    </applicationListeners>
 </idea-plugin>
