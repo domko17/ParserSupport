@@ -33,7 +33,5 @@
                     anchor="bottom"
                     factoryClass="org.plugin.antlrsupport.toolWindow.ToolWindowFactory"
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
-
-        <projectService serviceImplementation="org.plugin.antlrsupport.GrammarFileListener"/>
     </extensions>
 </idea-plugin>
