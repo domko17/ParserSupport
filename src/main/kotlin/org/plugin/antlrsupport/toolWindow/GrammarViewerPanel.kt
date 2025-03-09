@@ -5,7 +5,7 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.components.JBPanel
 import javax.swing.JPanel
 import com.intellij.ui.components.JBList
-import org.plugin.antlrsupport.findAllGrammarFiles
+import org.plugin.antlrsupport.GrammarFileTrackerService
 import javax.swing.JScrollPane
 import javax.swing.DefaultListModel
 
@@ -18,7 +18,12 @@ class GrammarViewerPanel(project: Project) : JBPanel<GrammarViewerPanel>() {
     init {
         val leftPanel = JScrollPane(grammarList)
 
-        updateGrammarList(findAllGrammarFiles(project))
+
+        val trackerService = project.getService(GrammarFileTrackerService::class.java)
+
+        trackerService.getGrammarFiles().forEach { println("Tracked grammar file: ${it.path}") }
+
+//        updateGrammarList(trackerService.getGrammarFiles())
         content.add(leftPanel)
         add(content)
     }
