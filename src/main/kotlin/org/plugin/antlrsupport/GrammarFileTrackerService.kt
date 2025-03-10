@@ -12,7 +12,7 @@ class GrammarFileTrackerService(private val project: Project) : VirtualFileListe
     private val grammarFiles: MutableSet<VirtualFile> = ConcurrentHashMap.newKeySet()
     private val listeners = mutableListOf<() -> Unit>()
 
-    val listModel = DefaultListModel<String>()
+    val listModel = DefaultListModel<VirtualFile>()
 
     init {
         VirtualFileManager.getInstance().addVirtualFileListener(this)
@@ -28,7 +28,7 @@ class GrammarFileTrackerService(private val project: Project) : VirtualFileListe
             VfsUtilCore.iterateChildrenRecursively(baseDir, null) { file ->
                 if (isValidGrammarFile(file)) {
                     grammarFiles.add(file)
-                    listModel.addElement(file.name)
+                    listModel.addElement(file)
                 }
                 true
             }
@@ -38,7 +38,7 @@ class GrammarFileTrackerService(private val project: Project) : VirtualFileListe
     override fun fileCreated(event: VirtualFileEvent) {
         if (isValidGrammarFile(event.file)) {
             grammarFiles.add(event.file)
-            listModel.addElement(event.file.name)
+            listModel.addElement(event.file)
             notify("New grammar file (.g4) detected.", project)
         }
     }
@@ -46,7 +46,7 @@ class GrammarFileTrackerService(private val project: Project) : VirtualFileListe
     override fun fileDeleted(event: VirtualFileEvent) {
         if (isValidGrammarFile(event.file)) {
             grammarFiles.remove(event.file)
-            listModel.removeElement(event.file.name)
+            listModel.removeElement(event.file)
             notify("Deleted grammar file (.g4) detected.", project)
         }
     }
