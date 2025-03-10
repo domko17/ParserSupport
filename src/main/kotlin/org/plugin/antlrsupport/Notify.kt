@@ -9,5 +9,5 @@ import com.intellij.openapi.project.Project
  * TODO
  */
 fun notify(message: String, project: Project, type: NotificationType = NotificationType.INFORMATION) {
-    Notifications.Bus.notify(Notification("ANTLR", "ANTLR Plugin", message, type), project)
+    Notifications.Bus.notify(Notification("ANTLR", "ANTLRSupport Plugin", message, type), project)
 }

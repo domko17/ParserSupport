@@ -1,35 +1,29 @@
 package org.plugin.antlrsupport.toolWindow
 
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.components.JBPanel
 import javax.swing.JPanel
 import com.intellij.ui.components.JBList
+import com.intellij.ui.components.JBScrollPane
 import org.plugin.antlrsupport.GrammarFileTrackerService
-import javax.swing.JScrollPane
-import javax.swing.DefaultListModel
+import java.awt.BorderLayout
 
 class GrammarViewerPanel(project: Project) : JBPanel<GrammarViewerPanel>() {
 
     private val content: JPanel = JPanel()
-    private val listModel = DefaultListModel<String>()
-    private val grammarList = JBList(listModel)
 
     init {
-        val leftPanel = JScrollPane(grammarList)
+        val grammarTrackerService = project.getService(GrammarFileTrackerService::class.java)
 
+        val grammarList = JBList(grammarTrackerService.listModel)
+        val panel = JPanel(BorderLayout())
+        panel.add(JBScrollPane(grammarList), BorderLayout.CENTER)
 
-        val trackerService = project.getService(GrammarFileTrackerService::class.java)
+        grammarTrackerService.addUpdateListener {
+            grammarList.updateUI()
+        }
 
-        trackerService.getGrammarFiles().forEach { println("Tracked grammar file: ${it.path}") }
-
-//        updateGrammarList(trackerService.getGrammarFiles())
-        content.add(leftPanel)
+        content.add(panel)
         add(content)
-    }
-
-    private fun updateGrammarList(files: List<VirtualFile>) {
-        listModel.clear()
-        files.forEach { file -> listModel.addElement(file.name) }
     }
 }
