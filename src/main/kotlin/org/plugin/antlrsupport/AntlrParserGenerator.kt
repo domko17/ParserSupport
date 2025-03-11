@@ -42,6 +42,6 @@ object AntlrParserGenerator {
     }
 
     private fun findGrammarFile(project: Project, fileName: String): VirtualFile? {
-        return LocalFileSystem.getInstance().findFileByPath("${project.basePath}/$fileName")
+        return LocalFileSystem.getInstance().findFileByPath(fileName)
     }
 }

@@ -13,7 +13,7 @@ import org.plugin.antlrsupport.notify
 import java.awt.BorderLayout
 import javax.swing.BoxLayout
 
-class GrammarViewerPanel(project: Project) : JBPanel<GrammarViewerPanel>() {
+class GrammarPanel(project: Project) : JBPanel<GrammarPanel>() {
 
     private val content: JPanel = JPanel()
 
