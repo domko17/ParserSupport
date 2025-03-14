@@ -3,15 +3,14 @@ package org.plugin.antlrsupport.toolWindow
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.project.Project
 import com.intellij.ui.components.JBPanel
-import javax.swing.JPanel
-import javax.swing.JButton
 import com.intellij.ui.components.JBList
 import com.intellij.ui.components.JBScrollPane
 import org.plugin.antlrsupport.AntlrParserGenerator
 import org.plugin.antlrsupport.GrammarFileTrackerService
 import org.plugin.antlrsupport.notify
 import java.awt.BorderLayout
-import javax.swing.BoxLayout
+import java.awt.Component
+import javax.swing.*
 
 class GrammarPanel(project: Project) : JBPanel<GrammarPanel>() {
 

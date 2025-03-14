@@ -18,7 +18,7 @@ class ToolWindowFactory : ToolWindowFactory, DumbAware {
 
         tablePanel.addTab("Parse Tree", ParseTreePanel())
         tablePanel.addTab("Augmented Transition Networks", ATNPanel())
-        splitter.firstComponent = GrammarPanel(project)
+        splitter.firstComponent = ParserListPanel(project)
         splitter.secondComponent = tablePanel
 
         val combinedContent = contentFactory.createContent(splitter, "", false)
