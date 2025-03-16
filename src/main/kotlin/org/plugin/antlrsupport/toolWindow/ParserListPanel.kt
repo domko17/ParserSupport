@@ -6,8 +6,6 @@ import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBScrollPane
 import org.plugin.antlrsupport.GrammarFileTrackerService
 import java.awt.BorderLayout
-import java.awt.GridBagConstraints
-import java.awt.GridBagLayout
 import java.io.File
 import javax.swing.*
 
@@ -15,7 +13,7 @@ import javax.swing.*
 /**
  * Created by Dominik.
  *
- * Panel for all found ANTLR generated parsers
+ * Panel for picking ANTLR generated parser
  */
 class ParserListPanel(project: Project) : JBPanel<ParserListPanel>() {
 
@@ -23,7 +21,6 @@ class ParserListPanel(project: Project) : JBPanel<ParserListPanel>() {
 
     init {
         val grammarTrackerService = project.getService(GrammarFileTrackerService::class.java)
-        grammarTrackerService.listModel
         val grammarList = JBList((0 until grammarTrackerService.listModel.size()).map { grammarTrackerService.listModel.getElementAt(it).name })
 
         val panel = JPanel(BorderLayout())
@@ -33,8 +30,11 @@ class ParserListPanel(project: Project) : JBPanel<ParserListPanel>() {
         }
 
         val filePathField = JTextField(20)
+        val browseButton = JButton()
+
         filePathField.isEditable = false;
-        val browseButton = JButton("Browse")
+
+        browseButton.add(JLabel("<html><center>Browse<br>parser</center></html>", JLabel.CENTER))
         browseButton.addActionListener {
             val fileChooser = JFileChooser()
             val returnValue = fileChooser.showOpenDialog(panel)
