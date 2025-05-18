@@ -1,14 +1,14 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>org.plugin.ANTLRSupport</id>
+    <id>org.plugin.ANTLRParserSupport</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>ANTLRSupport</name>
+    <name>ANTLRParserSupport</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-     <vendor email="guy@outlook.sk">ANTLRSupport</vendor>
+     <vendor email="guy@outlook.sk">ANTLRParserSupport</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
@@ -27,11 +27,11 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <!--                    icon="/icons/antlrSupportLogo.png" resize logo 13x13 -->
-        <toolWindow id="ANTLRSupport"
+        <!--                    icon="/icons/antlrParserSupportLogo.png" resize logo 13x13 -->
+        <toolWindow id="ANTLRParserSupport"
                     secondary="true"
                     anchor="bottom"
-                    factoryClass="org.plugin.antlrsupport.tool.ToolWindowFactory"
+                    factoryClass="org.plugin.antlrparsersupport.tool.ToolWindowFactory"
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
     </extensions>
 

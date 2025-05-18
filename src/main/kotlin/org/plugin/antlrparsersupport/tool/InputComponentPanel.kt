@@ -1,6 +1,5 @@
-package org.plugin.antlrsupport.tool
+package org.plugin.antlrparsersupport.tool
 
-import com.intellij.openapi.project.Project
 import com.intellij.ui.components.JBPanel
 import javax.swing.*
 import java.awt.*

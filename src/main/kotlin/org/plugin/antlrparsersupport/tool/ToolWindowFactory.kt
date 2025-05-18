@@ -1,4 +1,4 @@
-package org.plugin.antlrsupport.tool
+package org.plugin.antlrparsersupport.tool
 
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
@@ -7,8 +7,8 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.JBSplitter
 import com.intellij.ui.components.JBTabbedPane
 import com.intellij.ui.content.ContentFactory
-import org.plugin.antlrsupport.tool.tree.ParseTreePanel
-import org.plugin.antlrsupport.tool.atn.ATNPanel
+import org.plugin.antlrparsersupport.tool.tree.ParseTreePanel
+import org.plugin.antlrparsersupport.tool.atn.ATNPanel
 
 class ToolWindowFactory : ToolWindowFactory, DumbAware {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
