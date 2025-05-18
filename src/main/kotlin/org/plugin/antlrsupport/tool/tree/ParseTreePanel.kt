@@ -1,4 +1,4 @@
-package org.plugin.antlrsupport.toolWindow.tree
+package org.plugin.antlrsupport.tool.tree
 
 import com.intellij.ui.components.JBPanel
 import javax.swing.JLabel

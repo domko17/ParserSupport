@@ -1,4 +1,4 @@
-package org.plugin.antlrsupport.toolWindow
+package org.plugin.antlrsupport.tool
 
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
@@ -7,18 +7,18 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.JBSplitter
 import com.intellij.ui.components.JBTabbedPane
 import com.intellij.ui.content.ContentFactory
-import org.plugin.antlrsupport.toolWindow.tree.ParseTreePanel
-import org.plugin.antlrsupport.toolWindow.atn.ATNPanel
+import org.plugin.antlrsupport.tool.tree.ParseTreePanel
+import org.plugin.antlrsupport.tool.atn.ATNPanel
 
 class ToolWindowFactory : ToolWindowFactory, DumbAware {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val contentFactory = ContentFactory.getInstance()
         val tablePanel = JBTabbedPane()
-        val splitter = JBSplitter(false, 0.3f) // 30% / 70% split
+        val splitter = JBSplitter(false, 0.4f) // 40% / 60% split
 
         tablePanel.addTab("Parse Tree", ParseTreePanel())
         tablePanel.addTab("Augmented Transition Networks", ATNPanel())
-        splitter.firstComponent = ParserListPanel(project)
+        splitter.firstComponent = InputComponentPanel()
         splitter.secondComponent = tablePanel
 
         val combinedContent = contentFactory.createContent(splitter, "", false)

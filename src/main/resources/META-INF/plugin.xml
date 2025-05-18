@@ -28,20 +28,13 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <!--                    icon="/icons/antlrSupportLogo.png" resize logo 13x13 -->
-        <projectService serviceImplementation="org.plugin.antlrsupport.GrammarFileTrackerService"/>
         <toolWindow id="ANTLRSupport"
                     secondary="true"
                     anchor="bottom"
-                    factoryClass="org.plugin.antlrsupport.toolWindow.ToolWindowFactory"
+                    factoryClass="org.plugin.antlrsupport.tool.ToolWindowFactory"
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
     </extensions>
 
-<!--    <actions>-->
-<!--        <action id="org.plugin.antlrsupport.FindANTLRParsers"-->
-<!--                class="org.plugin.antlrsupport.FindANTLRParsersAction"-->
-<!--                text="Find all ANTLR Parsers"-->
-<!--                description="Find all ANTLR-generated parsers in project">-->
-<!--            <add-to-group group-id="ToolsMenu"/>-->
-<!--        </action>-->
-<!--    </actions>-->
+    <applicationListeners>
+    </applicationListeners>
 </idea-plugin>
