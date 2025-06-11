@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ANTLRParserSupport"
+rootProject.name = "ParserSupport"
