@@ -1,7 +1,9 @@
 package org.plugin.parsersupport.tool
 
+import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.ReadAction
+import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
@@ -15,6 +17,8 @@ import com.intellij.util.concurrency.AppExecutorUtil
 import org.plugin.parsersupport.ParserUtil
 import javax.swing.*
 import java.awt.*
+import java.io.File
+import java.net.URLClassLoader
 import javax.swing.JComponent
 
 
@@ -62,7 +66,14 @@ class InputComponentPanel(val project: Project) : JBPanel<InputComponentPanel>()
         topPanel.add(label)
 
 
-        // button for devel testing
+        // TODO
+        //  1. generate parser after changes in grammar
+        //  2. save parser .java file in samewhere of plugin
+        //  3. to create instance from class file
+        //  4. to obtain sentence of code lang
+        //  5. processing to AST & ATN
+
+        // button for devel testing -> load parser at the moment if is ready in a project
         val parseButton = JButton("Testing devel")
 
         parseButton.addActionListener {
@@ -72,11 +83,18 @@ class InputComponentPanel(val project: Project) : JBPanel<InputComponentPanel>()
                 val psiFile = PsiManager.getInstance(project).findFile(virtualFile!!)
                 val psiClass = (psiFile as? PsiJavaFile)?.classes?.firstOrNull()
 
-                val parserUtil = ParserUtil(project)
-                val process = parserUtil.execute(psiClass?.qualifiedName!!, virtualFile.path)
-                val exitCode = process.waitFor()
-                println("Process exited with code $exitCode")
 
+                val qualifiedName = psiClass?.qualifiedName
+
+                if (qualifiedName != null) {
+//                    val instance = clazz.getDeclaredConstructor().newInstance()
+//                    print("KASKKAK $instance")
+                }
+
+//                val parserUtil = ParserUtil(project)
+//                val process = parserUtil.execute(psiClass?.qualifiedName!!, virtualFile.path)
+//                val exitCode = process.waitFor()
+//                println("Process exited with code $exitCode")
 
             }.finishOnUiThread(ModalityState.defaultModalityState()) { qualifiedName ->
                 if (qualifiedName != null) {
