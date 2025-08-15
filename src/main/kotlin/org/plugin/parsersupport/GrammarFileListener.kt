@@ -8,7 +8,8 @@ import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiManager
 import org.plugin.parsersupport.exception.process
-
+import org.plugin.parsersupport.generate.AntlrGenerator
+import java.io.File
 
 class GrammarFileListener : FileDocumentManagerListener {
 
@@ -16,20 +17,20 @@ class GrammarFileListener : FileDocumentManagerListener {
         val fileDocumentManager = FileDocumentManager.getInstance()
 
         for (document in fileDocumentManager.unsavedDocuments) {
-            val file: VirtualFile = fileDocumentManager.getFile(document) ?: continue
+            val grammarFile: VirtualFile = fileDocumentManager.getFile(document) ?: continue
 
-            if (GrammarTypes.ANTLR.typeOfGrammar == file.extension) {
+            if (GrammarTypes.ANTLR.typeOfGrammar == grammarFile.extension) {
 
                 // TODO Maybe add notify for successful generated parser after save changes of grammar and parser ready for using.
                 ApplicationManager.getApplication().invokeLater {
-                    runCustomAction(file)
+                    updateParser(grammarFile)
                 }
 
             } else {
                 ProjectManager.getInstance().openProjects.forEach { project ->
-                    val psiFile = PsiManager.getInstance(project).findFile(file)
+                    val psiFile = PsiManager.getInstance(project).findFile(grammarFile)
                     if (psiFile != null) {
-                        notify("Grammar type exception: No support type (${file.extension}) of grammar", project, NotificationType.ERROR)
+                        notify("Grammar type exception: No support type (${grammarFile.extension}) of grammar", project, NotificationType.ERROR)
                     }
                 }
 
@@ -38,7 +39,9 @@ class GrammarFileListener : FileDocumentManagerListener {
         }
     }
 
-    private fun runCustomAction(file: VirtualFile) {
-
+    private fun updateParser(file: VirtualFile) {
+        val antlr4Generator = AntlrGenerator();
+        val classLoader = antlr4Generator.generateParser(File(file.path));
+        print("CLASS_LOADER: $classLoader")
     }
 }
