@@ -29,9 +29,6 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
 
-        <postStartupActivity implementation="org.plugin.parsersupport.MyStartupActivity"/>
-
-
         <!--                    icon="/icons/antlrParserSupportLogo.png" resize logo 13x13 -->
         <toolWindow id="ParserSupport"
                     secondary="true"
@@ -40,7 +37,9 @@
                     icon="AllIcons.Toolwindows.WebToolWindow"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="org.plugin.parsersupport.GrammarFileListener" topic="com.intellij.openapi.fileEditor.FileDocumentManagerListener" />
-    </applicationListeners>
+    <projectListeners>
+        <listener
+                class="org.plugin.parsersupport.GrammarFileListener"
+                topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </projectListeners>
 </idea-plugin>

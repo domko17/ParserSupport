@@ -12,13 +12,14 @@ import org.plugin.parsersupport.tool.atn.ATNPanel
 
 class ToolWindowFactory : ToolWindowFactory, DumbAware {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+
         val contentFactory = ContentFactory.getInstance()
         val tablePanel = JBTabbedPane()
         val splitter = JBSplitter(false, 0.4f) // 40% / 60% split
 
         tablePanel.addTab("Parse Tree", ParseTreePanel())
         tablePanel.addTab("Augmented Transition Networks", ATNPanel())
-        splitter.firstComponent = InputComponentPanel(project)
+//        splitter.firstComponent = InputComponentPanel(project)
         splitter.secondComponent = tablePanel
 
         val combinedContent = contentFactory.createContent(splitter, "", false)

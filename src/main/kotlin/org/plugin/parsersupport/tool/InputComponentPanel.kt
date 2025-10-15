@@ -1,9 +1,7 @@
 package org.plugin.parsersupport.tool
 
-import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.ReadAction
-import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.Messages
@@ -14,11 +12,8 @@ import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiManager
 import com.intellij.ui.components.JBPanel
 import com.intellij.util.concurrency.AppExecutorUtil
-import org.plugin.parsersupport.ParserUtil
 import javax.swing.*
 import java.awt.*
-import java.io.File
-import java.net.URLClassLoader
 import javax.swing.JComponent
 
 
@@ -26,7 +21,7 @@ import javax.swing.JComponent
  * Created by Dominik.
  *
  */
-class InputComponentPanel(val project: Project) : JBPanel<InputComponentPanel>() {
+class InputComponentPanel(var project: Project) : JBPanel<InputComponentPanel>() {
 
     init {
         val content = JPanel(BorderLayout())
@@ -83,12 +78,10 @@ class InputComponentPanel(val project: Project) : JBPanel<InputComponentPanel>()
                 val psiFile = PsiManager.getInstance(project).findFile(virtualFile!!)
                 val psiClass = (psiFile as? PsiJavaFile)?.classes?.firstOrNull()
 
-
                 val qualifiedName = psiClass?.qualifiedName
 
                 if (qualifiedName != null) {
 //                    val instance = clazz.getDeclaredConstructor().newInstance()
-//                    print("KASKKAK $instance")
                 }
 
 //                val parserUtil = ParserUtil(project)
@@ -103,21 +96,9 @@ class InputComponentPanel(val project: Project) : JBPanel<InputComponentPanel>()
                     Messages.showErrorDialog("Couldn't find class", "Error")
                 }
             }.submit(AppExecutorUtil.getAppExecutorService())
-
-
-//            print("Stating")
-//            var util = ParserUtil(project);
-//            util.findClassName(
-//                "/Users/dominikhorvath/Desktop/evolveum/prism/infra/axiom/target/generated-sources/antlr4/com/evolveum/axiom/lang/antlr/query/AxiomQueryParser.java"
-//            )
-//            print("End")
         }
 
         topPanel.add(parseButton)
-
-        // end code for devel testing
-
-
         return topPanel
     }
 
