@@ -1,6 +1,7 @@
 package org.plugin.parsersupport.tool.tree
 
 import com.intellij.ui.components.JBPanel
+import org.plugin.parsersupport.service.ParserSupportService
 import javax.swing.JComponent
 import javax.swing.JLabel
 import javax.swing.JPanel
@@ -16,8 +17,6 @@ class ParseTreePanel() : JBPanel<ParseTreePanel>() {
     }
 
     private fun getTreeComponent(): JComponent {
-
-//        print("RESULT OF AST::: ${parserSupportService.getAst()}")
 
         val component = JPanel()
         return component
